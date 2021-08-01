@@ -55,10 +55,17 @@ function myInit() {
   h.onload = () => {
     const flag = document.getElementById('flag');
     const amp = 20;
-    flag.width = h.width;
-    flag.height = h.height + amp * 2;
-    flag.getContext('2d').drawImage(h, 0, amp, h.width, h.height);
-    timer = waveFlag(flag, h.width / 10, amp);
+    const d = 0.8;
+
+    const cur = {
+      width: document.body.clientWidth * d,
+      height: (document.body.clientWidth * (h.height / h.width)) * d,
+    };
+
+    flag.width = cur.width;
+    flag.height = cur.height + amp * 2;
+    flag.getContext('2d').drawImage(h, 0, amp, cur.width, cur.height);
+    timer = waveFlag(flag, cur.width / 10, amp);
   };
   h.src = imageUrl;
 }
